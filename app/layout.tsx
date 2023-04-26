@@ -1,27 +1,27 @@
-import './globals.css'
-import { Nunito } from 'next/font/google'
-import Navbar from '@/app/components/navbar/Navbar'
-import Modal from '@/app/components/modals/Modal'
-import RegisterModal from '@/app/components/modals/RegisterModal'
-import ClientOnly from '@/app/components/ClientOnly'
-import ToasterProvider from '@/app/providers/ToasterProvider'
-import LoginModal from '@/app/components/modals/LoginModal'
-import getCurrentUser from '@/app/actions/getCurrentUser'
-import RentModal from '@/app/components/modals/RentModal'
+import './globals.css';
+import { Nunito } from 'next/font/google';
+import Navbar from '@/app/components/navbar/Navbar';
+import Modal from '@/app/components/modals/Modal';
+import RegisterModal from '@/app/components/modals/RegisterModal';
+import ClientOnly from '@/app/components/ClientOnly';
+import ToasterProvider from '@/app/providers/ToasterProvider';
+import LoginModal from '@/app/components/modals/LoginModal';
+import getCurrentUser from '@/app/actions/getCurrentUser';
+import RentModal from '@/app/components/modals/RentModal';
 
-const nunito = Nunito({ subsets: ['latin'] })
+const nunito = Nunito({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Airbnb',
   description: 'Find your flat',
-}
+};
 
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const currentUser = await getCurrentUser()
+  const currentUser = await getCurrentUser();
 
   return (
     <html lang="en">
@@ -34,9 +34,8 @@ export default async function RootLayout({
           <RentModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
-
-        {children}
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
-  )
+  );
 }

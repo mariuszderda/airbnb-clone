@@ -1,7 +1,55 @@
-export default function Home() {
+import ClientOnly from './components/ClientOnly';
+import Container from './components/Container';
+import EmptyState from '@/app/components/EmptyState';
+import getListings from '@/app/actions/getListings';
+import ListingCard from '@/app/components/listings/ListingCard';
+import getCurrentUser from '@/app/actions/getCurrentUser';
+
+export const revalidate = 60;
+
+export default async function Home() {
+  const currentUser = await getCurrentUser();
+  const listings = await getListings();
+
+
+
+  if (listings.length === 0) {
+    return (
+      <ClientOnly>
+        <EmptyState showReset />
+      </ClientOnly>
+    );
+  }
+
   return (
     <main>
-      <h1 className="text-rose-500 text-4xl">Airbnb</h1>
+      <ClientOnly>
+        <Container>
+          <div
+            className="
+            pt-24
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            md:grid-cols-3
+            lg:grid-cols-4
+            xl:grid-cols-5
+            2xl:grid-cols-6
+            gap-8
+          "
+          >
+            {listings.map((listing: any) => {
+              return (
+                <ListingCard
+                  currentUser={currentUser}
+                  key={listing.id}
+                  data={listing}
+                />
+              );
+            })}
+          </div>
+        </Container>
+      </ClientOnly>
     </main>
-  )
+  );
 }
