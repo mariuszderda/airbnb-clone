@@ -19,8 +19,8 @@ const TripPage = async () => {
     userId: currentUser.id,
   });
 
-  // @ts-ignore
-  if (reservations.lenght === 0) {
+
+  if (reservations.length === 0) {
     return (
       <ClientOnly>
         <EmptyState

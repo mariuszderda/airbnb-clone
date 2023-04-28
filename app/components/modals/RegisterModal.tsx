@@ -37,6 +37,7 @@ const RegisterModal = () => {
       .post('/api/register', data)
       .then(() => {
         registerModal.onClose();
+        loginModal.onOpen()
         toast.success('Registration was successful. You can login!')
       })
       .catch((e) => {
