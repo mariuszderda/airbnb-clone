@@ -1,15 +1,19 @@
 import ClientOnly from './components/ClientOnly';
 import Container from './components/Container';
 import EmptyState from '@/app/components/EmptyState';
-import getListings from '@/app/actions/getListings';
+import getListings, { IListingsParams } from '@/app/actions/getListings'
 import ListingCard from '@/app/components/listings/ListingCard';
 import getCurrentUser from '@/app/actions/getCurrentUser';
 
 export const revalidate = 60;
 
-export default async function Home() {
+interface HomeParams {
+  searchParams: IListingsParams
+}
+
+const Home = async ({searchParams}: HomeParams) => {
   const currentUser = await getCurrentUser();
-  const listings = await getListings();
+  const listings = await getListings(searchParams);
 
 
 
@@ -53,3 +57,5 @@ export default async function Home() {
     </main>
   );
 }
+
+export default Home;

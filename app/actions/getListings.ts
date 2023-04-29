@@ -1,23 +1,36 @@
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/pages/api/auth/[...nextauth]'
-import prisma from '@/app/libs/prismadb'
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import prisma from '@/app/libs/prismadb';
 
-export async function getSession() {
-  return await getServerSession(authOptions)
+export interface IListingsParams {
+  userId?: string;
 }
-
-export default async function getListings() {
+export default async function getListings(
+  params: IListingsParams
+) {
   try {
+    const { userId } = params;
 
+    let query: any = {};
+
+    if (userId) {
+      query.userId = userId
+    }
+    
     const listings = await prisma.listing.findMany({
-      orderBy:{
-        createdAt: 'desc'
-      }
-    })
+      where: query,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
 
-    return listings
+    const safeListings = listings.map((listing) => ({
+      ...listing,
+      createdAt: listing.createdAt.toISOString(),
+    }));
 
+    return safeListings;
   } catch (e: any) {
-    throw new Error(e)
+    throw new Error(e);
   }
 }
