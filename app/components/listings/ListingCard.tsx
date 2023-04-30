@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Listing, Reservation } from '@prisma/client';
 import Image from 'next/image';
 
-import { SafeListing, SafeReservation, SafeUser } from '@/app/types'
+import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
 import useCountries from '@/app/hooks/useCountries';
 import React, { useCallback, useMemo } from 'react';
 import { format } from 'date-fns';
@@ -101,7 +101,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
           {!reservation && <div className="font-light">night</div>}
         </div>
         {onAction && actionLabel && (
-          <Button label={actionLabel} onClick={handleCancel} disabled={disabled} small />
+          <Button
+            label={actionLabel}
+            onClick={handleCancel}
+            disabled={disabled}
+            small
+          />
         )}
       </div>
     </div>

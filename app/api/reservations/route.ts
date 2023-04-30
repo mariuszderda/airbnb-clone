@@ -27,9 +27,9 @@ export async function POST(req: Request) {
           endDate,
           totalPrice,
           userId: currentUser.id,
-        }
-      }
-    }
+        },
+      },
+    },
   });
 
   return NextResponse.json(listingAndReservation);

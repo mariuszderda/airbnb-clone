@@ -40,8 +40,8 @@ const TripsClient: React.FC<TripsClientProps> = ({
     },
     [router]
   );
-  console.log(reservations)
-    return (
+  console.log(reservations);
+  return (
     <Container>
       <Heading
         title="Trips"

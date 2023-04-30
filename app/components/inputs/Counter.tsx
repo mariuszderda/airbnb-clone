@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 interface CounterProps {
   title: string;
@@ -51,9 +51,7 @@ const Counter: React.FC<CounterProps> = ({
         >
           <AiOutlineMinus />
         </div>
-        <div className='font-light text-xl text-neutral-600'>
-          {value}
-        </div>
+        <div className="font-light text-xl text-neutral-600">{value}</div>
         <div
           className="
           w-10

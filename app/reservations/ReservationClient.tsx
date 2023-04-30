@@ -1,13 +1,13 @@
 'use client';
 
 import { SafeReservation, SafeUser } from '@/app/types';
-import Container from '@/app/components/Container'
-import Heading from '@/app/components/Heading'
-import { useRouter } from 'next/navigation'
-import { useCallback, useState } from 'react'
-import axios from 'axios'
+import Container from '@/app/components/Container';
+import Heading from '@/app/components/Heading';
+import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
+import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import ListingCard from '@/app/components/listings/ListingCard'
+import ListingCard from '@/app/components/listings/ListingCard';
 
 interface ReservationClientProps {
   currentUser?: SafeUser | null;
@@ -18,8 +18,8 @@ const ReservationClient: React.FC<ReservationClientProps> = ({
   reservations,
   currentUser,
 }) => {
-  const router = useRouter()
-  const [deletingId, setDeletingId] = useState('')
+  const router = useRouter();
+  const [deletingId, setDeletingId] = useState('');
 
   const onCancel = useCallback(
     (id: string) => {

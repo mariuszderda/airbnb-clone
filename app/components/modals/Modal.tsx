@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import { useCallback, useEffect, useState } from 'react'
-import { IoMdClose } from 'react-icons/io'
+import { useCallback, useEffect, useState } from 'react';
+import { IoMdClose } from 'react-icons/io';
 
-import Button from '../Button'
+import Button from '../Button';
 
 interface ModalProps {
-  isOpen?: boolean
-  onClose: () => void
-  onSubmit: () => void
-  title?: string
-  body?: React.ReactElement
-  footer?: React.ReactElement
-  actionLabel: string
-  disabled?: boolean
-  secondaryAction?: () => void
-  secondaryActionLabel?: string
+  isOpen?: boolean;
+  onClose: () => void;
+  onSubmit: () => void;
+  title?: string;
+  body?: React.ReactElement;
+  footer?: React.ReactElement;
+  actionLabel: string;
+  disabled?: boolean;
+  secondaryAction?: () => void;
+  secondaryActionLabel?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -30,41 +30,41 @@ const Modal: React.FC<ModalProps> = ({
   secondaryAction,
   secondaryActionLabel,
 }) => {
-  const [showModal, setShowModal] = useState(isOpen)
+  const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
-    setShowModal(isOpen)
-  }, [isOpen])
+    setShowModal(isOpen);
+  }, [isOpen]);
 
   const handleClose = useCallback(() => {
     if (disabled) {
-      return
+      return;
     }
 
-    setShowModal(false)
+    setShowModal(false);
     setTimeout(() => {
-      onClose()
-    }, 300)
-  }, [onClose, disabled])
+      onClose();
+    }, 300);
+  }, [onClose, disabled]);
 
   const handleSubmit = useCallback(() => {
     if (disabled) {
-      return
+      return;
     }
 
-    onSubmit()
-  }, [onSubmit, disabled])
+    onSubmit();
+  }, [onSubmit, disabled]);
 
   const handleSecondaryAction = useCallback(() => {
     if (disabled || !secondaryAction) {
-      return
+      return;
     }
 
-    secondaryAction()
-  }, [secondaryAction, disabled])
+    secondaryAction();
+  }, [secondaryAction, disabled]);
 
   if (!isOpen) {
-    return null
+    return null;
   }
 
   return (
@@ -187,7 +187,7 @@ const Modal: React.FC<ModalProps> = ({
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

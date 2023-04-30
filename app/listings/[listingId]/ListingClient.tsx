@@ -11,7 +11,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Reservation } from '@prisma/client';
 
-import { SafeListing, SafeReservation, SafeUser } from '@/app/types'
+import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
 import useLoginModal from '@/app/hooks/useLoginModal';
 
 import { categories } from '@/app/components/navbar/Categories';

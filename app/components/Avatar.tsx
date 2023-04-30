@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
+import Image from 'next/image';
 
 interface AvatarProps {
-  src: string | null | undefined
+  src: string | null | undefined;
 }
 
 const Avatar: React.FC<AvatarProps> = ({ src }) => {
@@ -15,7 +15,7 @@ const Avatar: React.FC<AvatarProps> = ({ src }) => {
       height="30"
       className="rounded-full"
     />
-  )
-}
+  );
+};
 
-export default Avatar
+export default Avatar;
