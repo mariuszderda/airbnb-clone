@@ -1,6 +1,6 @@
 'use client'
 
-import { FieldError, FieldValues, UseFormRegister } from 'react-hook-form'
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 import { BiDollar } from 'react-icons/bi'
 import React from 'react'
 
@@ -12,7 +12,7 @@ interface InputProps {
   formatPrice?: boolean
   required?: boolean
   register: UseFormRegister<FieldValues>
-  errors: FieldError
+  errors: FieldErrors
 }
 
 const Input: React.FC<InputProps> = ({
@@ -25,7 +25,6 @@ const Input: React.FC<InputProps> = ({
   errors,
   disabled,
 }) => {
-  // @ts-ignore
   return (
     <div className="w-full relative">
       {formatPrice && (
