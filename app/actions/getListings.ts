@@ -1,11 +1,9 @@
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import prisma from '@/app/libs/prismadb';
 
 export interface IListingsParams {
   userId?: string;
-  roomCount?: number;
   guestCount?: number;
+  roomCount?: number;
   bathroomCount?: number;
   startDate?: string;
   endDate?: string;
@@ -17,13 +15,13 @@ export default async function getListings(params: IListingsParams) {
   try {
     const {
       userId,
-      endDate,
-      startDate,
+      roomCount,
       guestCount,
       bathroomCount,
-      roomCount,
-      category,
       locationValue,
+      startDate,
+      endDate,
+      category,
     } = params;
 
     let query: any = {};
@@ -41,11 +39,13 @@ export default async function getListings(params: IListingsParams) {
         gte: +roomCount,
       };
     }
-    if (roomCount) {
-      query.roomCount = {
-        gte: +roomCount,
+
+    if (guestCount) {
+      query.guestCount = {
+        gte: +guestCount,
       };
     }
+
     if (bathroomCount) {
       query.bathroomCount = {
         gte: +bathroomCount,
@@ -63,11 +63,11 @@ export default async function getListings(params: IListingsParams) {
             OR: [
               {
                 endDate: { gte: startDate },
-                startDate: { lte: endDate },
+                startDate: { lte: startDate },
               },
               {
                 startDate: { lte: endDate },
-                endDate: { gte: startDate },
+                endDate: { gte: endDate },
               },
             ],
           },
@@ -88,7 +88,7 @@ export default async function getListings(params: IListingsParams) {
     }));
 
     return safeListings;
-  } catch (e: any) {
-    throw new Error(e);
+  } catch (error: any) {
+    throw new Error(error);
   }
 }

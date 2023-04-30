@@ -1,15 +1,15 @@
 import { SafeListing, SafeUser } from '@/app/types';
 import Container from '@/app/components/Container';
 import Heading from '@/app/components/Heading';
-import { list } from 'postcss';
 import ListingCard from '@/app/components/listings/ListingCard';
+import { FC } from 'react'
 
 interface FavoritesClientProps {
-  listings: SafeListing[];
+  listings?: SafeListing[];
   currentUser?: SafeUser | null;
 }
 
-const FavoritesClient: React.FC<FavoritesClientProps> = ({
+const FavoritesClient: FC<FavoritesClientProps> = ({
   listings,
   currentUser,
 }) => {
@@ -31,7 +31,7 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
         2xl:grid-cols-6
        "
       >
-        {listings.map((listing) => (
+        {listings?.map((listing) => (
           <ListingCard
             data={listing}
             key={listing.id}
